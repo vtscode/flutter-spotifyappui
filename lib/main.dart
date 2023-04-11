@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import './data/data.dart';
 import './models/current_track_model.dart';
 import './screens/playlist_screen.dart';
@@ -25,6 +26,13 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid || Platform.isIOS) {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
+    }
+
     return MaterialApp(
       title: 'Flutter Spotify UI',
       debugShowCheckedModeBanner: false,
